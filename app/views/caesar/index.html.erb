@@ -1,0 +1,9 @@
+<div class="container">
+  <%= form_for @caesar, url: caesar_index_path do |f|  %>
+    <%= f.label :word %>
+    <%= f.text_area :word %>
+    <%= f.label :count %>
+    <%= f.text_field :count %>
+    <%= f.submit "Save" %>
+  <% end %>
+</div>
