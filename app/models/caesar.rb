@@ -6,7 +6,27 @@ class Caesar < ApplicationRecord
 
   def caesar
     self.word = self.word.split("")
-    self.word.map! { |letter| letter =  ALPHABET[(ALPHABET.index(letter)) + self.count] }
-    pp self.word
+    self.word.map! do |letter|
+      if !ALPHABET[ALPHABET.index(letter) + self.count.to_i].nil?
+        ALPHABET[ALPHABET.index(letter) + self.count.to_i]
+      else
+        ALPHABET[(ALPHABET.count + self.count.to_i) - ALPHABET.count - 1]
+      end
+    end
+    self.word = self.word.join("")
+    return self.word
+  end
+
+  def brutus
+   self.word = self.word.split("")
+   self.word.map! do |letter|
+     if !ALPHABET[ALPHABET.index(letter) - self.count.to_i].nil?
+       ALPHABET[ALPHABET.index(letter) - self.count.to_i]
+     else
+       ALPHABET[(ALPHABET.count - self.count.to_i) + ALPHABET.count + 1]
+     end
+  end
+    self.word = self.word.join("")
+    return self.word
   end
 end
